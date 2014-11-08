@@ -37,10 +37,6 @@
 			}
 		?>
 
-
-		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo ASSETS_URL; ?>/css/demo.min.css">
-
 		<!-- FAVICONS -->
 		<link rel="shortcut icon" href="<?php echo ASSETS_URL; ?>/img/favicon/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="<?php echo ASSETS_URL; ?>/img/favicon/favicon.ico" type="image/x-icon">
@@ -81,7 +77,7 @@
 
 
 	</head>
-	<body <?php echo implode(' ', array_map(function($prop, $value) {
+	<body  <?php echo implode(' ', array_map(function($prop, $value) {
 			return $prop.'="'.$value.'"';
 		}, array_keys($page_body_prop), $page_body_prop)) ;?>>
 

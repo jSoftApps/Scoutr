@@ -62,9 +62,6 @@
 			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
 		<![endif]-->
 
-		<!-- Demo purpose only -->
-		<script src="<?php echo ASSETS_URL; ?>/js/demo.min.js"></script>
-
 		<!-- MAIN APP JS FILE -->
 		<script src="<?php echo ASSETS_URL; ?>/js/app.min.js"></script>		
 
