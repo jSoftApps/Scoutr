@@ -15,3 +15,16 @@ database folder.) This will set up your database to work with Scoutr.
 We are currently working on adding support for more databases, (such as SQL Microsoft Server and 
 postgresql) however, that is low on our current priority list. If you encounter any errors setting up 
 the database, please email James Kienle (james@jsoftapps.com.)
+
+
+MYSQL CODE STARTS NOW
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` char(64) COLLATE utf8_unicode_ci NOT NULL,
+  `salt` char(16) COLLATE utf8_unicode_ci NOT NULL,
+  `team` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;
