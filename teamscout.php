@@ -18,6 +18,135 @@
     
     // We can display the user's username to them by reading it from the session array.  Remember that because
     // a username is user submitted content we must use htmlentities on it before displaying it to the user.
+    
+    // Start Database Upload Code
+    
+    // This if statement checks to determine whether the registration form has been submitted
+    // If it has, then the registration code is run, otherwise the form is displayed
+    if(!empty($_POST))
+    {
+        
+        $query = "
+            SELECT
+                1
+            FROM team
+            WHERE
+                teamnumber = :teamnumber
+        ";
+        
+        // This contains the definitions for any special tokens that we place in
+        // our SQL query.  In this case, we are defining a value for the token
+        // :teamnumber.  It is possible to insert $_POST['teamnumber'] directly into
+        // your $query string; however doing so is very insecure and opens your
+        // code up to SQL injection exploits.  Using tokens prevents this.
+        // For more information on SQL injections, see Wikipedia:
+        // http://en.wikipedia.org/wiki/SQL_Injection
+        $query_params = array(
+            ':teamnumber' => $_POST['teamnumber']
+        );
+        
+        try
+        {
+            // These two statements run the query against your database table.
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute($query_params);
+        }
+        catch(PDOException $ex)
+        {
+            // Note: On a production website, you should not output $ex->getMessage().
+            // It may provide an attacker with helpful information about your code. 
+            die("Failed to run query: " . $ex->getMessage());
+        }
+        
+        // The fetch() method returns an array representing the "next" row from
+        // the selected results, or false if there are no more rows to fetch.
+        $row = $stmt->fetch();
+    
+        // An INSERT query is used to add new rows to a database table.
+        // Again, we are using special tokens (technically called parameters) to
+        // protect against SQL injection attacks.
+        $query = "
+            INSERT INTO team (
+                teamname,
+                teamnumber,
+                teamlocation,
+                startingyear,
+                weight,
+                height,
+                shootertype,
+                wheeltype,
+                wheelnumber,
+                motornumber,
+                canauto,
+                autopoints,
+                cancollect,
+                caneject,
+                canshoothigh,
+                canshootlow,
+                canthrow,
+                cancatch,
+                comments,
+                problems
+            ) VALUES (
+                :teamname,
+                :teamnumber,
+                :teamlocation,
+                :startingyear,
+                :weight,
+                :height,
+                :shootertype,
+                :wheeltype,
+                :wheelnumber,
+                :motornumber,
+                :canauto,
+                :autopoints,
+                :cancollect,
+                :caneject,
+                :canshoothigh,
+                :canshootlow,
+                :canthrow,
+                :cancatch,
+                :comments,
+                :problems
+            )
+        ";
+        
+        $query_params = array(
+            ':teamname' => $_POST['teamname'],
+            ':teamnumber' => $_POST['teamnumber'],
+            ':teamlocation' => $_POST['teamlocation'],
+            ':startingyear' => $_POST['startingyear'],
+            ':weight' => $_POST['weight'],
+            ':height' => $_POST['height'],
+            ':shootertype' => $_POST['shootertype'],
+            ':wheeltype' => $_POST['wheeltype'],
+            ':wheelnumber' => $_POST['wheelnumber'],
+            ':motornumber' => $_POST['motornumber'],
+            ':canauto' => $_POST['canauto'],
+            ':autopoints' => $_POST['autopoints'],
+            ':cancollect' => $_POST['cancollect'],
+            ':caneject' => $_POST['caneject'],
+            ':canshoothigh' => $_POST['canshoothigh'],
+            ':canshootlow' => $_POST['canshootlow'],
+            ':canthrow' => $_POST['canthrow'],
+            ':cancatch' => $_POST['cancatch'],
+            ':comments' => $_POST['comments'],
+            ':problems' => $_POST['problems'],
+        );
+        
+        try
+        {
+            // Execute the query to create the user
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute($query_params);
+        }
+        catch(PDOException $ex)
+        {
+            // Note: On a production website, you should not output $ex->getMessage().
+            // It may provide an attacker with helpful information about your code. 
+            die("Failed to run query: " . $ex->getMessage());
+        }
+    }
 ?> 
 <!DOCTYPE html>
 <html lang="en-us">
@@ -204,7 +333,7 @@
 			<!-- NAVIGATION : This navigation is also responsive-->
 			<nav>
 				<ul>
-					<li class="active">
+					<li>
 						<a href="index.html" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
 					</li>
           <li>
@@ -213,8 +342,8 @@
           <li>
 						<a href="index.html" title="Dashboard"><i class="fa fa-lg fa-fw fa-list"></i> <span class="menu-item-parent">Team List</span></a>
 					</li>
-          <li>
-						<a href="teamscout.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent">Scout a Team</span></a>
+          <li class="active">
+						<a href="index.html" title="Dashboard"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent">Scout a Team</span></a>
 					</li>
           <li>
 						<a href="index.html" title="Dashboard"><i class="fa fa-lg fa-fw fa-list"></i> <span class="menu-item-parent">Match List</span></a>
@@ -304,7 +433,7 @@
 						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							
 							<!-- Widget ID (each widget will need unique ID)-->
-							<div class="jarviswidget" id="wid-id-0">
+							<div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false"	data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-custombutton="false" data-widget-sortable="false">
 								<!-- widget options:
 									usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 									
@@ -319,8 +448,8 @@
 									
 								-->
 								<header>
-									<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-									<h2>Widget Title </h2>				
+									<span class="widget-icon"> <i class="fa fa-plus"></i> </span>
+									<h2>Scout a Team </h2>				
 									
 								</header>
 				
@@ -337,7 +466,223 @@
 									<!-- widget content -->
 									<div class="widget-body">
 										
-										<!-- this is what the user will see -->
+										<form id="order-form" class="smart-form" method="post" novalidate="novalidate">
+                      <header>
+                        Basic Team Information
+                      </header>
+
+                      <fieldset>
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="input"> <i class="icon-append fa fa-user"></i>
+                              <input type="text" name="teamname" placeholder="Team Name">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="input"> <i class="icon-append fa fa-briefcase"></i>
+                              <input type="text" name="teamnumber" placeholder="Team Number">
+                            </label>
+                          </section>
+                        </div>
+
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="input"> <i class="icon-append fa fa-envelope-o"></i>
+                              <input type="text" name="teamlocation" placeholder="Team Home Location">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="input"> <i class="icon-append fa fa-envelope-o"></i>
+                              <input type="text" name="startingyear" placeholder="Starting Year">
+                            </label>
+                          </section>
+                        </div>
+                      </fieldset>
+                      
+                      <header>
+                        Robot Physical Information
+                      </header>
+                      
+                      <fieldset>
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="input"> <i class="icon-append fa fa-user"></i>
+                              <input type="text" name="weight" placeholder="Robot Weight (Lbs)">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="input"> <i class="icon-append fa fa-briefcase"></i>
+                              <input type="text" name="height" placeholder="Robot Height (In)">
+                            </label>
+                          </section>
+                        </div>
+
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="select">
+                              <select name="shootertype">
+                                <option value="0" selected="" disabled="">Shooter Power Source</option>
+                                <option value="1">Pneumatic</option>
+                                <option value="2">Spring</option>
+                                <option value="3">Elastic</option>
+                                <option value="4">Electric</option>
+                                <option value="5">Other</option>
+                              </select> <i></i> </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="select">
+                              <select name="wheeltype">
+                                <option value="0" selected="" disabled="">Wheel Type</option>
+                                <option value="1">High-Traction</option>
+                                <option value="2">Mecanum</option>
+                                <option value="3">Omni</option>
+                                <option value="4">Plaction</option>
+                                <option value="5">Caster</option>
+                                <option value="6">Pneumatic</option>
+                                <option value="7">Other</option>
+                              </select> <i></i> </label>
+                          </section>
+                        </div>
+                        
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="input"> <i class="icon-append fa fa-user"></i>
+                              <input type="text" name="wheelnumber" placeholder="Number of Wheels">
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="input"> <i class="icon-append fa fa-briefcase"></i>
+                              <input type="text" name="motornumber" placeholder="Number of Drive Motors">
+                            </label>
+                          </section>
+                        </div>
+                      </fieldset>
+                      
+                      <header>
+                        Autonomous
+                      </header>
+                      
+                      <fieldset>
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="select">
+                              <select name="canauto">
+                                <option value="0" selected="" disabled="">Can Autonomous</option>
+                                <option value="1">Yes</option>
+                                <option value="2">No</option>
+                              </select> <i></i> </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="input"> <i class="icon-append fa fa-briefcase"></i>
+                              <input type="text" name="autopoints" placeholder="Average Autonomous Score">
+                            </label>
+                          </section>
+                        </div>
+                      </fieldset>
+                      
+                      <header>
+                        Game Information
+                      </header>
+                      
+                      <fieldset>
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="select">
+                              <select name="cancollect">
+                                <option value="0" selected="" disabled="">Can Collect Ball</option>
+                                <option value="1">Yes</option>
+                                <option value="2">No</option>
+                              </select> <i></i> </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="select">
+                              <select name="caneject">
+                                <option value="0" selected="" disabled="">Can Eject Ball</option>
+                                <option value="1">Yes</option>
+                                <option value="2">No</option>
+                              </select> <i></i> </label>
+                          </section>
+                        </div>
+                        
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="select">
+                              <select name="canshoothigh">
+                                <option value="0" selected="" disabled="">Can Shoot High Goal</option>
+                                <option value="1">Yes</option>
+                                <option value="2">No</option>
+                              </select> <i></i> </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="select">
+                              <select name="canshootlow">
+                                <option value="0" selected="" disabled="">Can Shoot Low Goal</option>
+                                <option value="1">Yes</option>
+                                <option value="2">No</option>
+                              </select> <i></i> </label>
+                          </section>
+                        </div>
+                        
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="select">
+                              <select name="canthrow">
+                                <option value="0" selected="" disabled="">Can Throw over Truss</option>
+                                <option value="1">Yes</option>
+                                <option value="2">No</option>
+                              </select> <i></i> </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="select">
+                              <select name="cancatch">
+                                <option value="0" selected="" disabled="">Can Catch from Truss</option>
+                                <option value="1">Yes</option>
+                                <option value="2">No</option>
+                              </select> <i></i> </label>
+                          </section>
+                        </div>
+                      </fieldset>
+                      
+                      <header>
+                        Robot Image
+                      </header>
+                      
+                      <fieldset>
+                        <div class="row">
+                          <section class="col col-12">
+                            <label class="textarea"> 										
+                              <input type="file" class="upload" name="fileToUpload" id="fileToUpload">
+                            </label>
+                          </section>
+                          
+                        </div>
+                      </fieldset>
+                      
+                      <header>
+                        Comments
+                      </header>
+                      
+                      <fieldset>
+                        <div class="row">
+                          <section class="col col-6">
+                            <label class="textarea"> 										
+                              <textarea rows="3" name="comments" placeholder="General Comments"></textarea> 
+                            </label>
+                          </section>
+                          <section class="col col-6">
+                            <label class="textarea"> 										
+                              <textarea rows="3" name="problems" placeholder="Known Problems"></textarea> 
+                            </label>
+                          </section>
+                        </div>
+                      </fieldset>
+                      
+                      <footer>
+                        <button type="submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                      </footer>
+                    </form>
 				
 									</div>
 									<!-- end widget content -->

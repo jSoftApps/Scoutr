@@ -288,88 +288,64 @@
 				</div>
 				<!-- end row -->
 				
-				<!--
-					The ID "widget-grid" will start to initialize all widgets below 
-					You do not need to use widgets if you dont want to. Simply remove 
-					the <section></section> and you can use wells or panels instead 
-					-->
-				
-				<!-- widget grid -->
-				<section id="widget-grid" class="">
-				
-					<!-- row -->
-					<div class="row">
-						
-						<!-- NEW WIDGET START -->
-						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							
-							<!-- Widget ID (each widget will need unique ID)-->
-							<div class="jarviswidget" id="wid-id-0">
-								<!-- widget options:
-									usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-									
-									data-widget-colorbutton="false"	
-									data-widget-editbutton="false"
-									data-widget-togglebutton="false"
-									data-widget-deletebutton="false"
-									data-widget-fullscreenbutton="false"
-									data-widget-custombutton="false"
-									data-widget-collapsed="true" 
-									data-widget-sortable="false"
-									
-								-->
-								<header>
-									<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-									<h2>Widget Title </h2>				
-									
-								</header>
-				
-								<!-- widget div-->
-								<div>
-									
-									<!-- widget edit box -->
-									<div class="jarviswidget-editbox">
-										<!-- This area used as dropdown edit box -->
-										<input class="form-control" type="text">	
-									</div>
-									<!-- end widget edit box -->
-									
-									<!-- widget content -->
-									<div class="widget-body">
-										
-										<!-- this is what the user will see -->
-				
-									</div>
-									<!-- end widget content -->
-									
-								</div>
-								<!-- end widget div -->
-								
-							</div>
-							<!-- end widget -->
-				
-						</article>
-						<!-- WIDGET END -->
-						
-					</div>
-				
-					<!-- end row -->
-				
-					<!-- row -->
-				
-					<div class="row">
-				
-						<!-- a blank row to get started -->
-						<div class="col-sm-12">
-							<!-- your contents here -->
-						</div>
-							
-					</div>
-				
-					<!-- end row -->
-				
-				</section>
-				<!-- end widget grid -->
+				<div class="row">
+					<div class="col-sm-12">
+							<div class="well well-sm">
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-6">
+										<div class="well well-light well-sm no-margin no-padding">
+											<div class="row">
+                        <div class="col-sm-12">
+                          <div class="col-sm-6">
+                            <?php
+                              $servername = "localhost";
+                              $username = "root";
+                              $password = "";
+                              $dbname = "Scoutr";
+
+                              // Create connection
+                              $conn = new mysqli($servername, $username, $password, $dbname);
+                              // Check connection
+                              if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                              } 
+
+                              $sql = "SELECT teamname, teamnumber, teamlocation, startingyear FROM team";
+                              $result = $conn->query($sql);
+                              if($result == false)
+                              {
+                                echo 'The query failed.';
+                                exit();
+                              }
+
+                              $row = $result->fetch_assoc();            
+                            ?>
+                            
+                            <h1><?php echo $row["teamname"];?></span><br>
+                            <small>Team <?php echo $row["teamnumber"];?></small></h1>
+                            <ul class="list-unstyled">
+                              <li>
+                                <p class="text-muted">
+                                  <i class="fa fa-globe"></i>&nbsp;&nbsp;<span class="txt-color-darken"><?php echo $row["teamlocation"];?></span>
+                                  
+                                </p>
+                              </li>
+                              <li>
+                                <p class="text-muted">
+                                  <i class="fa fa-calendar"></i>&nbsp;&nbsp;<span class="txt-color-darken">EST. <?php echo $row["startingyear"];?></span>
+                                </p>
+                              </li>
+														</ul>
+                            <hr>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
 
 			</div>
 			<!-- END MAIN CONTENT -->
