@@ -85,6 +85,10 @@ body {
     left: auto;
 }
 
+#wrapper {
+  background: #3A3F51;
+}
+
 .sidebar .sidebar-nav.navbar-collapse {
     padding-right: 0;
     padding-left: 0;
@@ -94,12 +98,16 @@ body {
     padding: 15px;
 }
 
-.sidebar ul li {
-    border-bottom: 1px solid #e7e7e7;
+.sidebar ul li a {
+    color: #fff;
 }
 
-.sidebar ul li a.active {
-    background-color: #eee;
+.sidebar ul li a:focus {
+    background-color: #313645;
+}
+
+.sidebar ul li a:hover {
+    background-color: #313645;
 }
 
 .sidebar .arrow {
