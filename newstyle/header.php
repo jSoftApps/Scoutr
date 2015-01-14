@@ -15,10 +15,11 @@
     <link href="assets/plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Bootstrap Metro Theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link href="assets/css/metro-bootstrap.css" rel="stylesheet">
     
-    <!-- Bootstrap Metro Menu Restyle
-    <link href="assets/css/customnav.css" rel="stylesheet">  -->
+    
+    <!-- Bootstrap Metro Menu Restyle -->
+    <link href="assets/css/customnav.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="assets/plugins/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
@@ -27,7 +28,7 @@
     <link href="assets/css/timeline.css" rel="stylesheet">
 
     <!-- SB Admin CSS -->
-    <link href="assets/css/sb-admin-2.css" rel="stylesheet">
+    <link href="assets/css/sb-admin-m.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="assets/plugins/morrisjs/morris.css" rel="stylesheet">
@@ -47,43 +48,3 @@
 <body>
 
     <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Scoutr v 2.0.0</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-              <!-- We don't really have a use for a top menu right now, so there's nothing here. TODO: Add top menu content -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                          <!-- Profile Section -->
-                          <h5><a href="test"><b>James Kienle</b></a></h5><br>
-                          <ul class="list-inline userlist">
-                            <li><a href=""><i class="fa fa-user"></i></a></li>
-                            <li><a href=""><i class="fa fa-users"></i></a></li>
-                            <li><a href=""><i class="fa fa-sign-out"></i></a></li>
-                          </ul>
-                        </li>
-                        <li class="active">
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
