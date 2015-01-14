@@ -1,7 +1,6 @@
  <?php
 
-    // Bring in user defined database connection variables
-	require("config/database.php");
+    // These variables define the connection information for your MySQL database
     
     // Database Username
     $username = "root";
