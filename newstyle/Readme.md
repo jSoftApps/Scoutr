@@ -22,3 +22,34 @@ How Can I Help?
 ===============
 We're currently looking for coders proficiant in PHP and MySQL, so if you know anyone that's good at that, tell them to email James Kienle (james@jsoftapps.com)
 We're also looking for people to help test bugs. If you want to help out that way, also email James and he'll set you up with an account.
+
+Directory Breakdown
+===================
+|- Root
+ |- assets
+  |- css
+  |- img
+  |- js
+  |- plugins
+   |- bootstrap
+   |- bootstrap-social
+   |- datatables
+   |- datatables-plugins
+   |- datatables-responsive
+   |- flot
+   |- flot.tooltip
+   |- font-awesome
+   |- holderjs
+   |- jquery
+   |- metisMenu
+   |- mocha
+   |- morrisjs
+   |- raphael
+ |- config
+ |- includes
+ 
+ Assets contains all of the CSS files, JS files, and page/graph plugins. Basically it contains everything that isn't back-end PHP code.
+ 
+ Config contains PHP configuration files. This is the folder that you will want to modify if you're running your own version of Scoutr on your own servers. It also contains the MySQL install files.
+ 
+ Includes contains all back-end PHP files. You will most likely not need to modify the files contained in this folder, as they control all of Scoutr's functions and do not contain any distribution specific information.
