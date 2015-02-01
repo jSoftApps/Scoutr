@@ -1,15 +1,7 @@
  <?php
 
-    // These variables define the connection information for your MySQL database
-    
-    // Database Username
-    $username = "root";
-    // Database Password
-    $password = "jSoft!9001";
-    // Database Host (usually localhost or 127.0.0.1)
-    $host = "play.jsoftapps.com";
-    // Name of the database (Ours is called Scoutr)
-    $dbname = "Scoutr";
+    // Bring in user defined database connection variables
+	require("config/database.php");
 
     // UTF-8 is a character encoding scheme that allows you to conveniently store
     // a wide varienty of special characters, like ¢ or €, in your database.
@@ -35,7 +27,7 @@
         // Note: On a production website, you should not output $ex->getMessage().
         // It may provide an attacker with helpful information about your code
         // (like your database username and password).
-        die("Failed to connect to the database: " . $ex->getMessage());
+        die("oopsFailed to connect to the database: " . $ex->getMessage());
     }
     
     // This statement configures PDO to throw an exception when it encounters
