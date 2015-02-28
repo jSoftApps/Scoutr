@@ -5,10 +5,24 @@
 	// Licensed under the CC-BY-NC-SA version 4.0
 	// This is the file containing all of scoutr's login code
 	// It handles encryption and the creation of the user cookie
+ 
   
     // First we execute our common code to connection to the database and start the session
     require("includes/common.php");
-    
+   
+  if (!empty($_SESSION['user']))
+  {
+
+    // If they are not, we redirect them to the login page.
+
+    header("Location: index.php");
+
+    // Remember that this die statement is absolutely critical.  Without it,
+    // people can view your members-only content without logging in.
+
+    die("Redirecting to index.php");
+  }
+   
     // This variable will be used to re-display the user's username to them in the
     // login form if they fail to enter the correct password.  It is initialized here
     // to an empty value, which will be shown if the user has not submitted the form.
@@ -101,7 +115,7 @@
         else
         {
             // Tell the user they failed
-            print("Login Failed.");
+            $error="Incorrect username or password!";
             
             // Show them their username again so all they have to do is enter a new
             // password.  The use of htmlentities prevents XSS attacks.  You should
@@ -172,6 +186,12 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
+                    <?php if ($error != "") { ?>
+                      <div class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong>Error!</strong> <?php print($error);?>
+                      </div>
+                    <?php } ?>
                         <form action="login.php" id="smart-form-register" class="smart-form client-form" method="post">
                             <fieldset>
                                 <div class="form-group">
@@ -181,9 +201,10 @@
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button type="submit" class="btn btn-success btn-block">
+                                <button type="submit" class="btn btn-primary btn-block">
                                 	Login
                                 </button>
+                                <a href="register.php" class="btn btn-block btn-default">Register</a>
                             </fieldset>
                         </form>
                     </div>

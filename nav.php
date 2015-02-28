@@ -18,17 +18,21 @@
           <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
               <li class="sidebar-search">
-                <!-- Profile Section -->
-                <h5><a href="test"><b>James Kienle</b></a></h5>
-                <br>
-                <ul class="list-inline userlist">
-                  <li><a href=""><i class="fa fa-user"></i></a></li>
-                  <li><a href=""><i class="fa fa-users"></i></a></li>
-                  <li><a href=""><i class="fa fa-sign-out"></i></a></li>
-                </ul>
               </li>
               <li class="active">
-                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+              </li>
+              <li class="active">
+                <a href="teamlist.php"><i class="fa fa-table fa-fw"></i> Team List</a>
+              </li>
+              <li class="active">
+                <a href="matchlist.php"><i class="fa fa-table fa-fw"></i> Match List</a>
+              </li>
+              <li class="active">
+                <a href="teamscout.php"><i class="fa fa-users fa-fw"></i> Scout a Team</a>
+              </li>
+              <li class="active">
+                <a href="matchscout.php"><i class="fa fa-users fa-fw"></i> Scout a Match</a>
               </li>
             </ul>
           </div>

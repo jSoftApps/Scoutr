@@ -21,6 +21,12 @@
     <!-- Timeline CSS -->
     <link href="assets/css/timeline.css" rel="stylesheet">
     
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="assets/plugins/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+    
     <!-- SB Admin CSS -->
     <link href="assets/css/sb-admin-m.css" rel="stylesheet">
     

@@ -6,6 +6,10 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="assets/plugins/metisMenu/dist/metisMenu.min.js"></script>
+    
+    <!-- DataTables JavaScript -->
+    <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 
     <!-- Morris Charts JavaScript -->
     <script src="assets/plugins/raphael/raphael-min.js"></script>

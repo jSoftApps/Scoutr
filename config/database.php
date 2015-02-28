@@ -13,7 +13,7 @@
   // Database Password
   $password = "jSoft!9001";
   // Database Host (usually localhost or 127.0.0.1)
-  $host = "208.53.124.120";
+  $host = "localhost";
   // Name of the database (Ours is called Scoutr)
   $dbname = "scoutr";
 ?>

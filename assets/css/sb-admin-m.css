@@ -161,7 +161,7 @@ body {
 }
 
 .btn-success.btn-outline {
-    color: #5cb85c;
+    color: #2ecc71;
 }
 
 .btn-info.btn-outline {
@@ -169,11 +169,11 @@ body {
 }
 
 .btn-warning.btn-outline {
-    color: #f0ad4e;
+    color: #f1c40f;
 }
 
 .btn-danger.btn-outline {
-    color: #d9534f;
+    color: #e74c3c;
 }
 
 .btn-primary.btn-outline:hover,
@@ -308,17 +308,17 @@ table.dataTable thead .sorting:after {
 }
 
 .panel-green {
-    border-color: #5cb85c;
+    border-color: #2ecc71;
 }
 
 .panel-green .panel-heading {
-    border-color: #5cb85c;
+    border-color: #2ecc71;
     color: #fff;
-    background-color: #5cb85c;
+    background-color: #2ecc71;
 }
 
 .panel-green a {
-    color: #5cb85c;
+    color: #2ecc71;
 }
 
 .panel-green a:hover {
@@ -326,17 +326,17 @@ table.dataTable thead .sorting:after {
 }
 
 .panel-red {
-    border-color: #d9534f;
+    border-color: #e74c3c;
 }
 
 .panel-red .panel-heading {
-    border-color: #d9534f;
+    border-color: #e74c3c;
     color: #fff;
-    background-color: #d9534f;
+    background-color: #e74c3c;
 }
 
 .panel-red a {
-    color: #d9534f;
+    color: #e74c3c;
 }
 
 .panel-red a:hover {
@@ -344,17 +344,17 @@ table.dataTable thead .sorting:after {
 }
 
 .panel-yellow {
-    border-color: #f0ad4e;
+    border-color: #f1c40f;
 }
 
 .panel-yellow .panel-heading {
-    border-color: #f0ad4e;
+    border-color: #f1c40f;
     color: #fff;
-    background-color: #f0ad4e;
+    background-color: #f1c40f;
 }
 
 .panel-yellow a {
-    color: #f0ad4e;
+    color: #f1c40f;
 }
 
 .panel-yellow a:hover {

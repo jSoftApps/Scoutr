@@ -9,6 +9,19 @@
   // First we execute our common code to connection to the database and start the session
     require("includes/common.php");
   
+  if (!empty($_SESSION['user']))
+  {
+
+    // If they are not, we redirect them to the login page.
+
+    header("Location: index.php");
+
+    // Remember that this die statement is absolutely critical.  Without it,
+    // people can view your members-only content without logging in.
+
+    die("Redirecting to index.php");
+  }
+  
     // This if statement checks to determine whether the registration form has been submitted
     // If it has, then the registration code is run, otherwise the form is displayed
     if(!empty($_POST))
@@ -16,17 +29,24 @@
         // Ensure that the user has entered a non-empty username
         if(empty($_POST['username']))
         {
-            // Note that die() is generally a terrible way of handling user errors
-            // like this.  It is much better to display the error with the form
-            // and allow the user to correct their mistake.  However, that is an
-            // exercise for you to implement yourself.
-            die("Please enter a username.");
+            // Display error message
+            header('Location: register.php?error=2');
+            die();
+        }
+        
+        // Ensure that the user has entered a non-empty username
+        if(empty($_POST['number']))
+        {
+            // Display error message
+            header('Location: register.php?error=4');
+            die();
         }
         
         // Ensure that the user has entered a non-empty password
         if(empty($_POST['password']))
         {
-            die("Please enter a password.");
+          header('Location: register.php?error=3');
+          die();
         }
         
         // We will use this SQL query to see whether the username entered by the
@@ -73,7 +93,8 @@
         // the database already and we should not allow the user to continue.
         if($row)
         {
-            die("This username is already in use");
+          header('Location: register.php?error=1');
+          die();
         }
         
         // An INSERT query is used to add new rows to a database table.
@@ -152,6 +173,24 @@
         die("Redirecting to login.php");
     }
     
+    if ($_GET['error'] == '1')
+    {
+      $error = "This username is already registered";
+    }
+    else if ($_GET['error'] == '2')
+    {
+      $error = "Please enter a username";
+    }
+    else if ($_GET['error'] == '3')
+    {
+      $error = "Please enter a password";
+    }
+    
+    else if ($_GET['error'] == '4')
+    {
+      $error = "Please enter your FRC team number";
+    }
+    
 ?> 
 
 <!DOCTYPE html>
@@ -213,6 +252,12 @@
                         <h3 class="panel-title">Sign up now!</h3>
                     </div>
                     <div class="panel-body">
+                    <?php if ($error != "") { ?>
+                      <div class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong>Error!</strong> <?php print($error);?>
+                      </div>
+                    <?php } ?>
                         <form action="register.php" method="post">
                             <fieldset>
                                 <div class="form-group">
@@ -228,6 +273,7 @@
                                 <button type="submit" class="btn btn-primary btn-block">
                                 	Register
                                 </button>
+                                <a href="login.php" class="btn btn-block btn-default">Log In</a>
                             </fieldset>
                         </form>
                     </div>
