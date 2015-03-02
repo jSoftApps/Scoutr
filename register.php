@@ -22,6 +22,8 @@
     die("Redirecting to index.php");
   }
   
+  $error = '';
+  
     // This if statement checks to determine whether the registration form has been submitted
     // If it has, then the registration code is run, otherwise the form is displayed
     if(!empty($_POST))
@@ -171,25 +173,26 @@
         // is critical.  The rest of your PHP script will continue to execute and
         // will be sent to the user if you do not die or exit.
         die("Redirecting to login.php");
-    }
-    
-    if ($_GET['error'] == '1')
-    {
-      $error = "This username is already registered";
-    }
-    else if ($_GET['error'] == '2')
-    {
-      $error = "Please enter a username";
-    }
-    else if ($_GET['error'] == '3')
-    {
-      $error = "Please enter a password";
-    }
-    
-    else if ($_GET['error'] == '4')
-    {
-      $error = "Please enter your FRC team number";
-    }
+	
+	}
+  
+  if ($_GET['error'] == '1')
+        {
+          $error = "This username is already registered";
+        }
+        else if ($_GET['error'] == '2')
+        {
+          $error = "Please enter a username";
+        }
+        else if ($_GET['error'] == '3')
+        {
+          $error = "Please enter a password";
+        }
+        
+        else if ($_GET['error'] == '4')
+        {
+          $error = "Please enter your FRC team number";
+        }
     
 ?> 
 

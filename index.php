@@ -159,8 +159,8 @@
                                     <i class="fa fa-support fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">1</div>
-                                    <div>Event(s) Added</div>
+                                    <div class="huge"><?php require("average.php"); ?></div>
+                                    <div>Average Robot Score</div>
                                 </div>
                             </div>
                         </div>

@@ -17,8 +17,9 @@
     $query = "
         SELECT
             matchid,
-            teamnumber
+            eventlocation
         FROM matchdata
+        GROUP BY matchid
     ";
     
     try
@@ -58,13 +59,20 @@
               <thead>
                 <tr>
                   <th>Match ID</th>
+                  <th>Match Location</th>
                 </tr>
               </thead>
               <tbody>
               <?php foreach($rows as $row): ?> 
+              <?php 
+                if ($row['eventlocation'] == 1)
+                {
+                  $eventlocation = "West Valley District Event";
+                }
+              ?>
                 <tr>
-                  <td><a href="profile.php?teamid=<?php echo htmlentities($row['teamnumber'], ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlentities($row['teamname'], ENT_QUOTES, 'UTF-8'); ?></a></td>
-                  
+                  <td><a href="match.php?matchnumber=<?php echo htmlentities($row['matchid'], ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlentities($row['matchid'], ENT_QUOTES, 'UTF-8'); ?></a></td>
+                  <td><?php echo $eventlocation; ?></a></td>
                 </tr>
               <?php endforeach; ?> 
               </tbody>

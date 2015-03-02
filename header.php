@@ -31,7 +31,7 @@
     <link href="assets/css/sb-admin-m.css" rel="stylesheet">
     
     <!-- Morris Charts CSS -->
-    <link href="assets/plugins/morrisjs/morris.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     
     <!-- Font Awesome -->
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">

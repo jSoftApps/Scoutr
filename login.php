@@ -22,6 +22,7 @@
 
     die("Redirecting to index.php");
   }
+  $error = '';
    
     // This variable will be used to re-display the user's username to them in the
     // login form if they fail to enter the correct password.  It is initialized here

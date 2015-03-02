@@ -23,6 +23,65 @@
     die("Redirecting to login.php");
   }
   
+  if(!empty($_POST))
+  {
+    if(empty($_POST['matchid']))
+    {
+      die("Please Specify a Match id");
+    }
+    if(empty($_POST['teamnumber']))
+    {
+      die("Please Specify a Team Number");
+    }
+        
+    // If a row was returned, then we know a matching team number was found in
+    // the database already and we should not allow the user to continue.
+    
+      $query = "
+        INSERT INTO matchdata 
+        (
+          matchid,
+          eventlocation,
+          teamnumber,
+          teamscore,
+          teamcomments
+        ) VALUES 
+        (
+          :matchid,
+          :eventlocation,
+          :teamnumber,
+          :teamscore,
+          :teamcomments
+        )
+      ";
+    
+    $query_params = array
+    (
+      ':matchid' => $_POST['matchid'],
+      ':eventlocation' => $_POST['eventlocation'],
+      ':teamnumber' => $_POST['teamnumber'],
+      ':teamscore' => $_POST['teamscore'],
+      ':teamcomments' => $_POST['teamcomments']
+    );
+    
+    try
+    {
+      // Execute the query to create the user
+      $stmt = $db->prepare($query);
+      $result = $stmt->execute($query_params);
+    }
+    catch(PDOException $ex)
+    {
+      // Note: On a production website, you should not output $ex->getMessage().
+      // It may provide an attacker with helpful information about your code. 
+      die("Failed to run query: " . $ex->getMessage());
+    }
+        
+    // This redirects the user back to the login page after they register
+    header("Location: match.php?matchnumber=" . $_POST['matchid']);
+    
+  }
+  
   // Include Header Files (CSS, Javascript, Meta Tags .etc)
   require ("header.php");
 
@@ -39,29 +98,29 @@
           </div>
           <div class="row">
             <div class="col-lg-12">
-              <form action="teamscout.php" method="post">
+              <form action="matchscout.php" method="post">
                 <div class="col-lg-12">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <input name="teamname" type="text" class="form-control" placeholder="Match ID">
+                        <input name="matchid" type="text" class="form-control" placeholder="Match ID">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <input name="teamname" type="text" class="form-control" placeholder="Team Number">
+                        <input name="teamnumber" type="text" class="form-control" placeholder="Team Number">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <select class="form-control" name="autocanpickuptote">
-                          <option value="0" selected="" disabled="">Alliance</option>
-                          <option value="1">Blue</option>
-                          <option value="2">Red</option>
+                        <select class="form-control" name="eventlocation">
+                          <option value="0" selected="" disabled="">Event Location</option>
+                          <option value="1">West Valley District Event</option>
+                          <option value="2">Auburn District Event</option>
                         </select>
                       </div>
                     </div>
@@ -69,14 +128,14 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <input name="teamname" type="text" class="form-control" placeholder="Comments on Team">
+                        <input name="teamcomments" type="text" class="form-control" placeholder="Comments on Team">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <input name="teamname" type="text" class="form-control" placeholder="Points Scored by Team">
+                        <input name="teamscore" type="text" class="form-control" placeholder="Points Scored by Team">
                       </div>
                     </div>
                   </div>
