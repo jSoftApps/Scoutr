@@ -36,7 +36,9 @@
             eventlocation,
             teamnumber,
             teamscore,
-            teamcomments
+            teamcomments,
+            teamautocomments,
+            robotposition
         FROM matchdata
         WHERE matchid = '".$matchnumber."'
     ";
@@ -69,6 +71,31 @@
 {
   $matchlocation = "West Valley District Event";
 }
+
+if ($row['robotposition'] == 1)
+{
+  $robotposition = "Red 1";
+}
+else if ($row['robotposition'] == 2)
+{
+  $robotposition = "Red 2";
+}
+else if ($row['robotposition'] == 3)
+{
+  $robotposition = "Red 3";
+}
+else if ($row['robotposition'] == 4)
+{
+  $robotposition = "Blue 1";
+}
+else if ($row['robotposition'] == 5)
+{
+  $robotposition = "Blue 2";
+}
+else if ($row['robotposition'] == 6)
+{
+  $robotposition = "Blue 3";
+}
 ?>
 <?php endforeach; ?> 
     <div id="page-wrapper">
@@ -83,8 +110,9 @@
               Team <?php echo htmlentities($row['teamnumber'], ENT_QUOTES, 'UTF-8'); ?>
             </div>
             <div class="panel-body">
-              <p><b>Comments:</b></p>
-              <p><?php echo htmlentities($row['teamcomments'], ENT_QUOTES, 'UTF-8'); ?></p>
+              <p><b>Starting Position/Alliance:</b> <?php echo htmlentities($robotposition, ENT_QUOTES, 'UTF-8'); ?></p>
+              <p><b>Autonomous Comments:</b> <?php echo htmlentities($row['teamautocomments'], ENT_QUOTES, 'UTF-8'); ?></p>
+              <p><b>Teleop Comments:</b> <?php echo htmlentities($row['teamcomments'], ENT_QUOTES, 'UTF-8'); ?></p>
               <h3>Total Points Scored: <?php echo htmlentities($row['teamscore'], ENT_QUOTES, 'UTF-8'); ?></h3>
             </div>
           </div>

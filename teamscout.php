@@ -550,12 +550,12 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <input name="pros" type="text" class="form-control" placeholder="Pros">
+                        <textarea name="pros" class="form-control" placeholder="Cons">Pros</textarea>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <input name="cons" type="text" class="form-control" placeholder="Cons">
+                        <textarea name="cons" class="form-control" placeholder="Cons">Cons</textarea>
                       </div>
                     </div>
                   </div>

@@ -25,10 +25,6 @@
   
   if(!empty($_POST))
   {
-    if(empty($_POST['matchid']))
-    {
-      die("Please Specify a Match id");
-    }
     if(empty($_POST['teamnumber']))
     {
       die("Please Specify a Team Number");
@@ -44,14 +40,18 @@
           eventlocation,
           teamnumber,
           teamscore,
-          teamcomments
+          teamcomments,
+          teamautocomments,
+          robotposition
         ) VALUES 
         (
           :matchid,
           :eventlocation,
           :teamnumber,
           :teamscore,
-          :teamcomments
+          :teamcomments,
+          :teamautocomments,
+          :robotposition
         )
       ";
     
@@ -61,7 +61,9 @@
       ':eventlocation' => $_POST['eventlocation'],
       ':teamnumber' => $_POST['teamnumber'],
       ':teamscore' => $_POST['teamscore'],
-      ':teamcomments' => $_POST['teamcomments']
+      ':teamcomments' => $_POST['teamcomments'],
+      ':teamautocomments' => $_POST['teamautocomments'],
+      ':robotposition' => $_POST['robotposition']
     );
     
     try
@@ -128,14 +130,36 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <input name="teamcomments" type="text" class="form-control" placeholder="Comments on Team">
+                        <select class="form-control" name="robotposition">
+                          <option value="0" selected="" disabled="">Robot Position</option>
+                          <option value="1">Red 1</option>
+                          <option value="2">Red 2</option>
+                          <option value="2">Red 3</option>
+                          <option value="2">Blue 1</option>
+                          <option value="2">Blue 2</option>
+                          <option value="2">Blue 3</option>
+                        </select>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <input name="teamscore" type="text" class="form-control" placeholder="Points Scored by Team">
+                        <textarea name="teamautocomments" type="text" class="form-control"  placeholder="Comments on Team Autonommous"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <textarea name="teamcomments" type="text" class="form-control"  placeholder="Comments on Team"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input name="teamscore" type="text" class="form-control" placeholder="Points Scored by Alliance">
                       </div>
                     </div>
                   </div>
